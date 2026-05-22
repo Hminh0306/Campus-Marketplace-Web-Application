@@ -1,10 +1,9 @@
 // Import Firebase Authentication
-import { auth } from "firebase'js";
+import { auth } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"
-
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
 // Get HTML elements
 const emailInput = document.getElementById("emailInput");
@@ -14,21 +13,25 @@ const messageArea = document.getElementById("messageArea");
 
 // Run login function
 // when user clicks sign in button
-signInButton.addEventListener("click");
+signInButton.addEventListener("click", async function () {
 
 // get email and password entered by user
-emailInput.value 
-passwordInput.value
+const email = emailInput.value;
+const password = passwordInput.value; 
 
 // try login with Firebase
-await signInWithEmailAndWord(auth, emailInput, password);
+try {
+    // try login with Firebase
+    await signInWithEmailAndPassword(auth, email, password);
 
-// if login successful => show success message, redirect to home page
-messageArea.textContext = "Login successful";
-messageArea.style.color = "green";
-window.location.href = "index.html";
+    // if login successful => show success message, redirect to home page
+    messageArea.textContent = "Login successful";
+    messageArea.style.color = "green";
+    window.location.href = "index.html";
 
-
-
-// if login fails
-// show error message
+  } catch (error) {
+    // if login fails => show error message
+    messageArea.textContent = "Wrong email or password.";
+    messageArea.style.color = "red";
+  }
+});
