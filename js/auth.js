@@ -2,8 +2,10 @@
 import { auth } from "./firebase-auth.js";
 
 import {
-    signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Get HTML elements
 const emailInput = document.getElementById("emailInput");
@@ -51,23 +53,26 @@ if (signInButton) {
 //Run logout function
 // when user clicks lgout button
 
-logoutButton.addEventListener(
-    "click",
-    async function () {
-
+if (logoutButton) {
+ 
+  logoutButton.addEventListener("click", async function () {
+ 
     try {
-      // try logout from Firebase
+      // Tell Firebase to sign the current user out
       await signOut(auth);
-
-      console.log("Logout successful");
-
+ 
+      console.log("Sign out successful.");
+ 
+      // After signing out, redirect back to the login page
+      window.location.href = "login.html";
+ 
     } catch (error) {
-
-      console.log("Logout failed");
-
+      // Sign-out errors are rare but log them just in case
+      console.error("Sign out error:", error.message);
     }
-  }
-);
+  });
+}
+ 
 
 
 
