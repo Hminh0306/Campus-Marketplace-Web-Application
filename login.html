@@ -7,12 +7,36 @@
 
 <h1>Login</h1>
 
-<form>
-  <input type="email" />
-  <input type="password" />
-  <button>Login</button>
+<form id="login-form">
+  <input id="email" type="email" placeholder="Email" required />
+  <input id="password" type="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+  <p id="error-msg" style="color:red;display:none;"></p>
 </form>
 
-<script type="module" src="./js/auth.js"></script>
+<script type="module">
+  import { auth } from "./js/firebase.js";
+  import { signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  // If already logged in, skip to marketplace
+  onAuthStateChanged(auth, (user) => {
+    if (user) window.location.href = "marketplace.html";
+  });
+
+  document.getElementById("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email    = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("error-msg");
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "marketplace.html";
+    } catch (err) {
+      errorMsg.textContent = err.message;
+      errorMsg.style.display = "block";
+    }
+  });
+</script>
 </body>
 </html>
