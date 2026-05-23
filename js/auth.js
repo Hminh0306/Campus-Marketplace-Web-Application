@@ -10,6 +10,7 @@ const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const signInButton = document.getElementById("signInButton");
 const messageArea = document.getElementById("messageArea");
+const logoutButton = document.getElementById("logoutButton");
 
 // Run login function
 // when user clicks sign in button
@@ -35,3 +36,28 @@ try {
     messageArea.style.color = "red";
   }
 });
+
+//Run logout function
+// when user clicks lgout button
+logoutButton.addEventListener(
+    "click",
+    async function () {
+
+    try {
+      // try logout from Firebase
+      await signOut(auth);
+
+      console.log("Logout successful");
+
+    } catch (error) {
+
+      console.log("Logout failed");
+
+    }
+  }
+);
+
+
+
+
+
