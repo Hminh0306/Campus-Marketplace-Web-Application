@@ -1,0 +1,35 @@
+/* ── Shared styles for all pages ─────────────────────────── */
+
+/* Card images: fixed height so all cards line up evenly */
+.card-img-fixed {
+  height: 200px;
+  object-fit: cover;   /* crops the image to fill the box without stretching */
+}
+
+/* Slightly shorter image for My Listings cards */
+.card-img-fixed-sm {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Navigation cards on the welcome page lift up when hovered */
+.nav-card .card {
+  transition: transform 0.2s;
+}
+.nav-card .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Login page: center the form on screen */
+.login-wrapper {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Feedback messages below the login form */
+.msg-error   { color: #dc3545; font-size: 0.875rem; }
+.msg-success { color: #198754; font-size: 0.875rem; }

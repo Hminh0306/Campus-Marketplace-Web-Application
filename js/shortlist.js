@@ -27,7 +27,7 @@ async function loadShortlist(uid) {
   const containerEl = document.getElementById("items-container");
 
   try {
-    const q = query(collection(db, "shortlists"), where("userID", "==", uid));
+    const q = query(collection(db, "shortlists"), where("userId", "==", uid));
     const snapshot = await getDocs(q);
 
     loadingEl.classList.add("d-none");
@@ -40,9 +40,9 @@ async function loadShortlist(uid) {
     // Fetch full item details for each shortlist entry
     const rows = [];
     for (const shortlistDoc of snapshot.docs) {
-      const { itemID } = shortlistDoc.data();
-      if (!itemID) continue;
-      const itemSnap = await getDoc(doc(db, "items", itemID));
+      const { itemId } = shortlistDoc.data();
+      if (!itemId) continue;
+      const itemSnap = await getDoc(doc(db, "items", itemId));
       rows.push({
         shortlistDocId: shortlistDoc.id,
         itemData: itemSnap.exists() ? itemSnap.data() : null
@@ -68,7 +68,7 @@ async function loadShortlist(uid) {
 }
 
 function buildRow(shortlistDocId, item) {
-  const name         = item?.name || "Item no longer available";
+  const name         = item?.itemName || item?.itemname || "Item no longer available";
   const isTradeItem  = !item?.price || item?.price === "Trade" || item?.price === 0;
   const priceDisplay = isTradeItem ? "Trade" : `$${parseFloat(item.price).toFixed(2)}`;
 
@@ -81,7 +81,7 @@ function buildRow(shortlistDocId, item) {
         <h6 class="mb-1">${name}</h6>
         <span class="badge bg-secondary me-1">${item?.category || ""}</span>
         <span class="fw-bold text-primary">${priceDisplay}</span>
-        <p class="text-muted small mb-0 mt-1">Seller: ${item?.sellerEmail || ""}</p>
+        <p class="text-muted small mb-0 mt-1">Seller: ${item?.sellerEmail || item?.selleremail || ""}</p>
       </div>
       <button class="btn btn-danger btn-sm" id="remove-${shortlistDocId}">Remove</button>
     </div>

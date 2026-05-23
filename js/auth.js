@@ -37,7 +37,7 @@ if (signInButton) {
  
       // Sign-in succeeded — show a success message then redirect
       messageArea.textContent = "Login successful! Redirecting...";
-      messageArea.style.color = "green";
+      messageArea.className = "msg-success";
  
       window.location.href = "index.html"; // Go to the Welcome page
  
@@ -45,7 +45,7 @@ if (signInButton) {
       // Sign-in failed — log the error code and show a friendly message
       console.error("Login error:", error.code, error.message);
       messageArea.textContent = "Wrong email or password. Please try again.";
-      messageArea.style.color = "red";
+      messageArea.className = "msg-error";
     }
   });
 }

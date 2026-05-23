@@ -58,9 +58,8 @@ function buildCard(item) {
   col.innerHTML = `
     <div class="card h-100 shadow-sm">
       <img src="${imgSrc}"
-           class="card-img-top"
+           class="card-img-top card-img-fixed-sm"
            alt="${item.name || ''}"
-           style="height:180px; object-fit:cover;"
            onerror="this.src='https://placehold.co/400x300?text=No+Image'"/>
       <div class="card-body d-flex flex-column">
         <h6 class="card-title">${item.name || "Unnamed Item"}</h6>
