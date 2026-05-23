@@ -1,5 +1,5 @@
 // Import auth from firebase.js
-import { auth } from "./firebase-auth.js";
+import { auth } from "./firebase.js";
 
 // Import auth state listener from Firebase Auth
 import {
