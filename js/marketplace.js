@@ -1,6 +1,7 @@
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { collection, getDocs, doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { requireAuth, logoutUser } from "./auth.js"; 
 
 let currentUser = null;
 let allItems    = []; // [{ id, data, isShortlisted }]
@@ -181,3 +182,18 @@ async function removeFromShortlist(btn) {
   btn.dataset.shortlisted = "false";
   btn.disabled = false;
 }
+
+requireAuth(async function (user) {
+  currentUser = user;
+
+  console.log("Auth user object:", user);
+  console.log("UID:", user.uid);
+
+  document.getElementById("user-email").textContent = user.email;
+
+  await loadItems();
+});
+
+document
+  .getElementById("signout-btn")
+  .addEventListener("click", logoutUser);

@@ -72,9 +72,27 @@ if (logoutButton) {
     }
   });
 }
- 
 
 
+// Resuable auth guard for protected pages
+export function requireAuth(callback) {
+  onAuthStateChanged(auth, function(user) {
+    if (!user){
+      window.location.href = "login.html";
+      return;
+    }
 
+    callback(user);
+  });
+}
 
+// Resuable Logout function
+export async function logoutUser() {
+  try {
+    await signOut(auth);
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Sign out error:", error.message);
+  }
+}
 
