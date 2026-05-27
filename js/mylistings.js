@@ -75,3 +75,9 @@ function buildCard(item) {
   `;
   return col;
 }
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});

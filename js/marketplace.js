@@ -197,3 +197,9 @@ requireAuth(async function (user) {
 document
   .getElementById("signout-btn")
   .addEventListener("click", logoutUser);
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});

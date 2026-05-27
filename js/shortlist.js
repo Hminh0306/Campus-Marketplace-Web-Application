@@ -118,3 +118,9 @@ async function removeItem(shortlistDocId) {
     alert("Failed to remove item: " + err.message);
   }
 }
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});
