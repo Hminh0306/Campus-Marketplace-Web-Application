@@ -104,12 +104,17 @@ async function removeItem(shortlistDocId) {
 
     document.getElementById(`row-${shortlistDocId}`).remove();
 
-    // Show empty state if nothing left
-    const containerEl = document.getElementById("items-container");
-    if (containerEl.children.length === 0) {
-      containerEl.classList.add("d-none");
-      document.getElementById("empty-state").classList.remove("d-none");
-    }
+const containerEl =
+    document.getElementById("shortlist-container");
+
+if (containerEl.children.length === 0) {
+
+    containerEl.classList.add("d-none");
+
+    document
+        .getElementById("empty-state")
+        .classList.remove("d-none");
+}
 
   } catch (err) {
     btn.disabled = false;
