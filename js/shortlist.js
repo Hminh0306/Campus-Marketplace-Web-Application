@@ -24,7 +24,7 @@ onAuthStateChanged(auth, async (user) => {
 async function loadShortlist(uid) {
   const loadingEl   = document.getElementById("loading");
   const emptyEl     = document.getElementById("empty-state");
-  const containerEl = document.getElementById("items-container");
+  const containerEl = document.getElementById("shortlist-container");
 
   try {
     const q = query(collection(db, "shortlists"), where("userId", "==", uid));

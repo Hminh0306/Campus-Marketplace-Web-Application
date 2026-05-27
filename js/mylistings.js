@@ -21,10 +21,10 @@ onAuthStateChanged(auth, async (user) => {
 async function loadListings(uid) {
   const loadingEl   = document.getElementById("loading");
   const emptyEl     = document.getElementById("empty-state");
-  const containerEl = document.getElementById("items-container");
+  const containerEl = document.getElementById("mylistings-container");
 
   try {
-    const q = query(collection(db, "items"), where("sellerID", "==", uid));
+    const q = query(collection(db, "items"), where("sellerUID", "==", uid));
     const snapshot = await getDocs(q);
 
     loadingEl.classList.add("d-none");
@@ -59,10 +59,10 @@ function buildCard(item) {
     <div class="card h-100 shadow-sm">
       <img src="${imgSrc}"
            class="card-img-top card-img-fixed-sm"
-           alt="${item.name || ''}"
+           alt="${item.itemName || ''}"
            onerror="this.src='https://placehold.co/400x300?text=No+Image'"/>
       <div class="card-body d-flex flex-column">
-        <h6 class="card-title">${item.name || "Unnamed Item"}</h6>
+        <h6 class="card-title">${item.itemName || "Unnamed Item"}</h6>
         <p class="card-text text-muted small flex-grow-1">${item.description || ""}</p>
         <div class="d-flex justify-content-between align-items-center mt-2">
           <span class="badge bg-secondary">${item.category || "Uncategorised"}</span>

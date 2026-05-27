@@ -63,7 +63,7 @@ function renderFiltered() {
     return matchesSearch && matchesCategory;
   });
 
-  const container  = document.getElementById("items-container");
+  const container  = document.getElementById("marketplace-container");
   const emptyState = document.getElementById("empty-state");
 
   container.innerHTML = "";
