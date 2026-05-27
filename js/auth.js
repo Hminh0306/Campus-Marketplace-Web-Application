@@ -12,7 +12,7 @@ const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const signInButton = document.getElementById("signInButton");
 const messageArea = document.getElementById("messageArea");
-const logoutButton = document.getElementById("logoutButton");
+const logoutButton = document.getElementById("signout-btn");
 
 // Run login function - when user clicks sign in button
 if (signInButton) {
