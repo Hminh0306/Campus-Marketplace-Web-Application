@@ -2,8 +2,11 @@
 
 /* Card images: fixed height so all cards line up evenly */
 .card-img-fixed {
-  height: 200px;
-  object-fit: cover;   /* crops the image to fill the box without stretching */
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  background-color: #f8f9fa;  /* crops the image to fill the box without stretching */
 }
 
 /* Slightly shorter image for My Listings cards */
