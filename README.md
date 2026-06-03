@@ -105,12 +105,12 @@ Firebase Config:
 
 ```javascript
 const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "..."
+  apiKey: "AIzaSyATr3nykFWbz80ZSJdTAiykhmk4MJSse4Y",
+  authDomain: "campus-bd130.firebaseapp.com",
+  projectId: "campus-bd130",
+  storageBucket: "campus-bd130.firebasestorage.app",
+  messagingSenderId: "360523767817",
+  appId: "1:360523767817:web:0422f53ea05ad1d65498d8"
 };
 ```
 
